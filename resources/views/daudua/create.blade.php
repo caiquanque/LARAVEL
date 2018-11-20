@@ -6,7 +6,22 @@
             <br/>
             <h3 align="center">Add Data</h3>
             <br/>
-            <form method="post" action="{{url('daudua')}}">
+            @if(count($errors) >0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if(\Session::has('success'))
+                <div class="alert alert-success">
+                    <p>{{\Session::get('success')}}</p>
+                </div>
+            @endif
+            <form method="post" action="{{route('daudua.store')}}">
+                @csrf
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="Enter Name"/>
                 </div>
