@@ -15,7 +15,9 @@ class DauDUaController extends Controller
      */
     public function index()
     {
-        //
+        $dauduas = DauDua::all()->toArray();
+
+        return view('daudua.index', compact('dauduas'));
     }
 
     /**
@@ -52,7 +54,7 @@ class DauDUaController extends Controller
         $daudua->address = $request->address;
         $daudua->save();
 
-        return redirect()->route('daudua.create')->with('success', 'Data Added');
+        return redirect()->route('daudua.index')->with('success', 'Data Added');
     }
 
     /**
